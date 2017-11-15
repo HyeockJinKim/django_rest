@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, render_to_response
 from urllib2 import Request, urlopen
 from .forms import RestForm
-from django.shortcuts import get_object_or_404
-from .models import Rest
-from django.shortcuts import redirect
 from multiprocessing import Pool
+from django.contrib.auth.forms import AuthenticationForm
 import json
 
-# Create your views here.
 
+# Create your views here.
 def rest_api(title, keyword):
     client_id = "NcX91n74ipkTU9hJevhc"
     client_secret = "5ameCGlFSL"
@@ -30,6 +30,7 @@ def rest_api(title, keyword):
         print("Error Code:" + rescode)
 
 
+@login_required
 def rest_post(request):
     if request.method == "POST":
         form = RestForm(request.POST)
@@ -52,9 +53,4 @@ def rest_post(request):
             return render_to_response('hz/data.html', {'title': str(result['title']), 'keyword':str(result['keywords'][0]), 'period': period_list, 'ratio':ratio_list})
     else:
         form = RestForm()
-    return render(request, 'hz/base.html', {'form':form})
-
-
-
-
-
+    return render(request, 'hz/rest.html', {'form':form})

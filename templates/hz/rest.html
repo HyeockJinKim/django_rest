@@ -1,0 +1,9 @@
+{% extends 'hz/base.html' %}
+
+{% block content %}
+    <form method="POST" class="rest-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">검색</button>
+    </form>
+{% endblock %}

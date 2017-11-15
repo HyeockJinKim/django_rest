@@ -16,9 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from hz import views
+from django.contrib.auth import views as auth_views
+from django.contrib.auth import settings
 
 
 urlpatterns = [
+    url(r'^accounts/login/', auth_views.login, name='login',
+        kwargs={'template_name': 'hz/login.html', 'next_page':'^$' }),
+    url(r'^accounts/logout/', auth_views.logout, name='logout',
+        kwargs={'next_page': settings.LOGIN_URL, }),
     url(r'^$', views.rest_post, name='rest_post'),
     url(r'^admin/', admin.site.urls),
 ]
