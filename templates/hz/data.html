@@ -1,0 +1,14 @@
+{% extends 'hz/base.html' %}
+
+{% block dataLab %}
+    <div class="post">
+        <h1> {{ title }}</h1>
+        <h2> {{ keyword }}</h2>
+    {% for data in datas %}
+        <div class="results">
+            <p> {{ data }}</p>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
