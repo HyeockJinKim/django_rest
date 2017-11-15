@@ -124,3 +124,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REDIRECT_FIELD_NAME = ('username', 'password',)
+
+LOGIN_REDIRECT_URL = '/'

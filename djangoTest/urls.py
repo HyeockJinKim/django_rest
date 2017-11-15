@@ -22,7 +22,7 @@ from django.contrib.auth import settings
 
 urlpatterns = [
     url(r'^accounts/login/', auth_views.login, name='login',
-        kwargs={'template_name': 'hz/login.html', 'next_page':'^$' }),
+        kwargs={'template_name': 'hz/login.html', }),
     url(r'^accounts/logout/', auth_views.logout, name='logout',
         kwargs={'next_page': settings.LOGIN_URL, }),
     url(r'^$', views.rest_post, name='rest_post'),
