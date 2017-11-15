@@ -1,14 +1,43 @@
-{% extends 'hz/base.html' %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>네이버 데이터 랩 REST API</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-{% block dataLab %}
-    <div class="post">
-        <h1> {{ title }}</h1>
-        <h2> {{ keyword }}</h2>
-    {% for data in datas %}
-        <div class="results">
-            <p> {{ data }}</p>
-        </div>
-    {% endfor %}
+</head>
+<body>
+    <div class="page-header">
+        {% block dataLab %}
+            <div class="container">
+                <h1 class="top-menu"> Title : {{ title }}</h1>
+                <h2> Keyword : {{ keyword }}</h2>
+            </div>
     </div>
+                <br/>
+                <br/>
+                <h3> Naver DataLab 검색량 </h3>
+                <br/>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            {% for date in period %}
+                                <th> {{ date }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% for data in ratio %}
+                                <td>{{ data }}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
 
-{% endblock %}
+
+
+        {% endblock %}
+</body>
+</html>

@@ -44,10 +44,12 @@ def rest_post(request):
 
 
             # post.save()
-            data_list = []
+            period_list = []
+            ratio_list = []
             for data in result['data']:
-                data_list.append(str(data['period']) +' : ' + str(data['ratio']))
-            return render_to_response('hz/data.html', {'title': str(result['title']), 'keyword':str(result['keywords'][0]), 'datas': data_list})
+                period_list.append(str(data['period']))
+                ratio_list.append(str(data['ratio']))
+            return render_to_response('hz/data.html', {'title': str(result['title']), 'keyword':str(result['keywords'][0]), 'period': period_list, 'ratio':ratio_list})
     else:
         form = RestForm()
     return render(request, 'hz/base.html', {'form':form})
